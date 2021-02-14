@@ -1,53 +1,53 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import products from '../products.json'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Ecom Store</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Ecom Store
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Just another ecom store
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <ul className={styles.grid}>
+          <li className={styles.card}>
+            <a href="https://nextjs.org/docs">
+              <img src="/images/silkshirt.jpg" alt="Chloe Silk Shirt" />
+              <h3>Chloe silk shirt</h3>
+              <p>$20.00</p>
+              <p>This multicoloured Chloé paisley print silk shirt is crafted with a point collar, long sleeves and mother-of-pearl button fastenings. Just like the shapes upon this ornately patterned piece, we're finding a way to weave this Chloé shirt into every outfit.</p>
+            </a>
+          </li>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+          <li className={styles.card}>
+            <a href="https://nextjs.org/learn">
+              <img src="/images/marine.jpg" alt="Marine Serre Turtleneck" />
+              <h3>Marine Serre Turtleneck</h3>
+              <p>$10.00</p>
+              <p>This light pink Marine Serre crescent moon print turtleneck top is designed with a high neck to a stretch fit and features long sleeves and all-over signature patterning. Suffice to say, we were over the moon when we saw this Marine Serre top.</p>
+            </a>
+          </li>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+          <li className={styles.card}>
+            <a href="https://github.com/vercel/next.js/tree/master/examples"            >
+              <img src="/images/denim.jpg" alt="Bottega Veneta Denim shirt" />
+              <h3>Bottega Veneta Denim shirt</h3>
+              <p>$10.00</p>
+              <p>True to form from a designer with a particularly keen interest in geometry, Daniel Lee designs this Bottega Veneta shirt with an angular patch pocket. This pure-cotton denim style is washed in deep indigo and finished with contrast topstitching.</p>
+            </a>
+          </li>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        </ul>
       </main>
 
       <footer className={styles.footer}>
