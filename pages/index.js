@@ -1,9 +1,39 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import products from '../products.json'
 import { initiateCheckout } from '../lib/payments'
 
+const defaultCart = {
+  products: {}
+}
+
 export default function Home() {
+
+  const [cart, updateCart] = useState(defaultCart)
+
+  const cartItems = Object.keys(cart.products).map(key => {
+    
+  })
+  console.log("cart es", cart)
+  
+  function addToCart({ id } = {}) {
+    updateCart(prev => {
+      let cartState = {...prev};
+
+      if (cartState.products[id]) {
+        cartState.products[id].quantity = cartState.products[id].quantity + 1;
+      } else {
+        cartState.products[id] = {
+          id,
+          quantity: 1
+        }
+      }
+
+      return cartState;
+    })
+  }
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -20,6 +50,14 @@ export default function Home() {
           Just another ecom store
         </p>
 
+        <p className={styles.description}>
+          <strong>Items:</strong> 2
+          <br />
+          <strong>Total Cost:</strong> $20
+          <br />
+          <button className={styles.button}>Check Out</button>
+        </p>
+
         <ul className={styles.grid}>
           {products.map(product => {
             const { id, title, price, description, image } = product;
@@ -33,14 +71,17 @@ export default function Home() {
                 </a>
                 <p>
                   <button className={styles.button} onClick={() => {
-                    initiateCheckout({
-                      lineItems: [
-                        {
-                          price: id,
-                          quantity: 1,
-                        }
-                      ]
-                    });
+                    // initiateCheckout({
+                    //   lineItems: [
+                    //     {
+                    //       price: id,
+                    //       quantity: 1,
+                    //     }
+                    //   ]
+                    // });
+                    addToCart({
+                      id
+                    })
                   }}>Buy Now</button>
                 </p>
               </li>
