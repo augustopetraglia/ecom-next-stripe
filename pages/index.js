@@ -13,9 +13,36 @@ export default function Home() {
   const [cart, updateCart] = useState(defaultCart)
 
   const cartItems = Object.keys(cart.products).map(key => {
-    
+    const product = products.find(({ id }) => `${id}` === `${key}`);
+    return {
+      ...cart.products[key],
+      pricePerItem: product.price
+    }
   })
-  console.log("cart es", cart)
+  
+  const subTotal = cartItems.reduce((accumulator, { pricePerItem, quantity }) => {
+    return accumulator + ( pricePerItem * quantity )
+  }, 0)
+
+  const totalItems = cartItems.reduce((accumulator, { quantity }) => {
+    return accumulator + quantity
+  }, 0)
+  
+  
+  console.log("cart", cart)
+  console.log("cartItems es", cartItems)
+  console.log("subTotal", subTotal)
+
+  function checkout() {
+    initiateCheckout({
+      lineItems: cartItems.map(item => {
+        return {
+          price: item.id,
+          quantity: item.quantity
+        }
+      })
+    });
+  }
   
   function addToCart({ id } = {}) {
     updateCart(prev => {
@@ -51,11 +78,11 @@ export default function Home() {
         </p>
 
         <p className={styles.description}>
-          <strong>Items:</strong> 2
+          <strong>Items:</strong> {totalItems}
           <br />
-          <strong>Total Cost:</strong> $20
+          <strong>Total Cost:</strong> ${subTotal}
           <br />
-          <button className={styles.button}>Check Out</button>
+          <button className={styles.button} onClick={checkout}>Check Out</button>
         </p>
 
         <ul className={styles.grid}>
@@ -71,18 +98,10 @@ export default function Home() {
                 </a>
                 <p>
                   <button className={styles.button} onClick={() => {
-                    // initiateCheckout({
-                    //   lineItems: [
-                    //     {
-                    //       price: id,
-                    //       quantity: 1,
-                    //     }
-                    //   ]
-                    // });
                     addToCart({
                       id
                     })
-                  }}>Buy Now</button>
+                  }}>Add To Cart</button>
                 </p>
               </li>
             )
