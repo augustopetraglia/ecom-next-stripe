@@ -4,9 +4,9 @@ import styles from './Nav.module.css';
 
 const Nav = () => {
   return (
-    <nav>
-      <p>Ecom Store</p>
-      <p>
+    <nav className={styles.nav}>
+      <p className={styles.navTitle}>Ecom Store</p>
+      <p className={styles.navCart}>
         <button><FaShoppingCart /> $0.00</button>
       </p>
     </nav>
