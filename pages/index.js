@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import products from '../products.json'
-import useCart from '../hooks/use-cart'
+import { useCart } from '../hooks/use-cart'
 
 
 export default function Home() {
@@ -24,13 +24,13 @@ export default function Home() {
           Just another ecom store
         </p>
 
-        <p className={styles.description}>
+        {/* <p className={styles.description}>
           <strong>Items:</strong> {totalItems}
           <br />
           <strong>Total Cost:</strong> ${subTotal}
           <br />
           <button className={styles.button} onClick={checkout}>Check Out</button>
-        </p>
+        </p> */}
 
         <ul className={styles.grid}>
           {products.map(product => {
