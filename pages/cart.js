@@ -26,13 +26,37 @@ const columns = [
 ];
 
 export default function Cart() {
-  const { cartItems, checkout } = useCartState();
+  const { cartItems, checkout, updateItem } = useCartState();
   console.log("los items", cartItems);
 
   const data = cartItems.map(item =>{
     const product = products.find(({ id })=> id === item.id)
+
+    const Quantity = () => {
+      const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const  { currentTarget } = e;
+        const inputs = Array.from(currentTarget.elements);
+        const quantity = inputs.find(input => input.name === 'quantity')?.value
+        updateItem({
+          id: item.id, 
+          quantity: quantity && parseInt(quantity)
+        });
+        // console.log('submit', quantity);
+      }
+      
+      return (
+        <form onSubmit={handleSubmit}>
+          <input type="number" name="quantity" min={0} defaultValue={item.quantity} />
+          <button type='submit'>Update</button>
+        </form>
+      )
+    }
+
     return {
       ...item,
+      quantity: <Quantity />,
       total: item.quantity * item.pricePerItem,
       title: product.title
     }

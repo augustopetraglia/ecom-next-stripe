@@ -26,6 +26,13 @@ export function useCartState() {
   
   const cartItems = Object.keys(cart.products).map(key => {
     const product = products.find(({ id }) => `${id}` === `${key}`);
+
+    const Quantity = () => {
+      return (
+        <p>Quantity</p>
+      )
+    }
+
     return {
       ...cart.products[key],
       pricePerItem: product.price
@@ -39,10 +46,18 @@ export function useCartState() {
   const totalItems = cartItems.reduce((accumulator, { quantity }) => {
     return accumulator + quantity
   }, 0)
-  
-  
-  console.log("cartItems es", cartItems)
-  console.log("subTotal", subTotal)
+
+  function updateItem({ id, quantity }) {
+    updateCart(prev => {
+      let cartState = {...prev};
+
+      if (cartState.products[id]) {
+        cartState.products[id].quantity = quantity;
+      }
+
+      return cartState;
+    })
+  }
 
   function checkout() {
     initiateCheckout({
@@ -75,6 +90,7 @@ export function useCartState() {
   return {
     cart, 
     updateCart,
+    updateItem,
     subTotal,
     cartItems,
     totalItems,
