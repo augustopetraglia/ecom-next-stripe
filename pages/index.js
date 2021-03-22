@@ -22,7 +22,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <p className={styles.description}>
-          Just another ecom store
+          Simple ecom store with Stripe
         </p>
         
         <ul className={styles.grid}>
