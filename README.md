@@ -1,1 +1,1 @@
-Simple ecom store using Next.js and Stripe and create-next-app
+Simple ecom store using Next.js, Stripe and create-next-app
